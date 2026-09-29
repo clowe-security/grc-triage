@@ -1,0 +1,27 @@
+[
+    {
+        "id": "TC-01",
+        "scenario": "During a quarterly access review, a manager reports that an engineer who transferred to the marketing team three weeks ago still has access to the satellite ground station configuration repository. Access logs have not yet been reviewed.",
+        "impact": "High",
+        "likelihood": "Moderate",
+        "severity": "High",
+        "expected_route": "Review",
+        "controls": ["PS-5", "AC-2", "AC-6"],
+        "recommended_action": "Revoke the engineer's access, pull the logs, fix the transfer process",
+        "escalate_if": "Logs show use after transfer, or repo contains export-controlled data",
+        "close_if": null
+
+    },
+    {
+        "id": "TC-02",
+        "scenario": "A vendor security questionnaire asks whether the company encrypts customer data at rest. The compliance analyst answering it can't find documentation confirming encryption for one of three customer-data storage systems. Engineering says it's 'probably encrypted by default' but hasn't confirmed.",
+        "impact": "High",
+        "likelihood": "Moderate",
+        "severity": "High",
+        "expected_route": "Review",
+        "controls": ["SC-28", "SC-28(1)", "CM-6", "SC-12", "PL-2"],
+        "recommended_action": "Have engineering verify the encryption setting, and hold the questionnaire answer until there's evidence.",
+        "escalate_if": "Store confirmed unencrypted AND evidence of unauthorized access to it or its backups; or the questionnaire was already submitted to the customer answering 'Yes'.",
+        "close_if": "Encryption verified; becomes a documentation-only finding"    
+    }
+]
