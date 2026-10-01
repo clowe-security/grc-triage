@@ -5,12 +5,15 @@
         "impact": "High",
         "likelihood": "Moderate",
         "severity": "High",
-        "expected_route": "Review",
-        "controls": ["PS-5", "AC-2", "AC-6"],
+        "route": "Review",
+        "controls": [
+            "PS-5",
+            "AC-2",
+            "AC-6"
+        ],
         "recommended_action": "Revoke the engineer's access, pull the logs, fix the transfer process",
         "escalate_if": "Logs show use after transfer, or repo contains export-controlled data",
         "close_if": null
-
     },
     {
         "id": "TC-02",
@@ -18,10 +21,16 @@
         "impact": "High",
         "likelihood": "Moderate",
         "severity": "High",
-        "expected_route": "Review",
-        "controls": ["SC-28", "SC-28(1)", "CM-6", "SC-12", "PL-2"],
+        "route": "Review",
+        "controls": [
+            "SC-28",
+            "SC-28(1)",
+            "CM-6",
+            "SC-12",
+            "PL-2"
+        ],
         "recommended_action": "Have engineering verify the encryption setting, and hold the questionnaire answer until there's evidence.",
         "escalate_if": "Store confirmed unencrypted AND evidence of unauthorized access to it or its backups; or the questionnaire was already submitted to the customer answering 'Yes'.",
-        "close_if": "Encryption verified; becomes a documentation-only finding"    
+        "close_if": "Encryption verified; becomes a documentation-only finding"
     }
 ]

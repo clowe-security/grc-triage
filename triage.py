@@ -17,5 +17,9 @@ for case in cases:
         messages=[{"role": "user", "content": prompt}],
         system=system_prompt,
     )
-    print(case["id"])
-    print(response.content[0].text)
+    raw = response.content[0].text
+    cleaned = raw.strip().removeprefix("```json").removesuffix("```").strip()
+    result = json.loads(cleaned)
+
+    print(f"{case['id']} expected: {case['route']} got: {result['route']}")
+    print(f"{case['id']} expected: {case['severity']} got: {result['severity']}")
