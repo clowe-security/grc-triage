@@ -33,4 +33,5 @@ for case in cases:
             print("     PASS", field)
         else:
             print(f"        FAIL {field} expected: {case[field]} got: {result[field]}")
+            print(result["reasoning"])
 print(f"Score: {passed}/{total}")

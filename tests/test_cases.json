@@ -6,7 +6,11 @@
         "likelihood": "Moderate",
         "severity": "High",
         "route": "Review",
-        "controls": ["PS-5", "AC-2", "AC-6"],
+        "controls": [
+            "PS-5",
+            "AC-2",
+            "AC-6"
+        ],
         "recommended_action": "Revoke the engineer's access, pull the access logs, and fix the transfer process.",
         "escalate_if": "Logs show use after transfer, or the repository contains export-controlled data.",
         "close_if": null
@@ -18,7 +22,13 @@
         "likelihood": "Moderate",
         "severity": "High",
         "route": "Review",
-        "controls": ["SC-28", "SC-28(1)", "CM-6", "SC-12", "PL-2"],
+        "controls": [
+            "SC-28",
+            "SC-28(1)",
+            "CM-6",
+            "SC-12",
+            "PL-2"
+        ],
         "recommended_action": "Have engineering verify the encryption setting, and hold the questionnaire answer until there's evidence.",
         "escalate_if": "Store confirmed unencrypted AND evidence of unauthorized access to it or its backups; or the questionnaire was already submitted to the customer answering 'Yes'.",
         "close_if": "Encryption verified; becomes a documentation-only finding."
@@ -30,7 +40,11 @@
         "likelihood": "Low",
         "severity": "Low",
         "route": "Close",
-        "controls": ["PE-2", "PE-3", "AT-2"],
+        "controls": [
+            "PE-2",
+            "PE-3",
+            "AT-2"
+        ],
         "recommended_action": "Document the report and the log review. Remind the badge owner of badge handling requirements.",
         "escalate_if": "Badge logs show activity during the window, the badge grants access to a restricted area, or the same person has repeat incidents.",
         "close_if": "Log review is documented and the owner has been reminded."
@@ -42,7 +56,13 @@
         "likelihood": "High",
         "severity": "High",
         "route": "Escalate",
-        "controls": ["AC-2(3)", "PS-4", "PS-7", "IR-4", "IR-6"],
+        "controls": [
+            "AC-2(3)",
+            "PS-4",
+            "PS-7",
+            "IR-4",
+            "IR-6"
+        ],
         "recommended_action": "Disable the account immediately and preserve the logs. Notify security, legal and export compliance. Identify which files were downloaded, from where, and by whom.",
         "escalate_if": null,
         "close_if": null
@@ -54,7 +74,10 @@
         "likelihood": "Low",
         "severity": "Low",
         "route": "Close",
-        "controls": ["AC-19", "AC-20"],
+        "controls": [
+            "AC-19",
+            "AC-20"
+        ],
         "recommended_action": "No violation. Document that IT confirmed enrollment and compliance, and thank the reporter.",
         "escalate_if": "The device is found to be unenrolled or non-compliant, or it is accessing data that policy does not permit on personal devices.",
         "close_if": "IT's confirmation of enrollment is documented."
@@ -66,7 +89,10 @@
         "likelihood": "Moderate",
         "severity": "Moderate",
         "route": "Review",
-        "controls": ["AT-2", "AT-4"],
+        "controls": [
+            "AT-2",
+            "AT-4"
+        ],
         "recommended_action": "Identify who has not completed training, notify their managers, and set a completion deadline before the audit window opens. Track progress weekly.",
         "escalate_if": "Completion is still below 95% one week before the audit window opens.",
         "close_if": "Completion reaches 95% and the training records are exported as evidence."
@@ -78,7 +104,12 @@
         "likelihood": "High",
         "severity": "High",
         "route": "Escalate",
-        "controls": ["IR-4", "IR-6", "IR-8(1)", "SC-7(10)"],
+        "controls": [
+            "IR-4",
+            "IR-6",
+            "IR-8(1)",
+            "SC-7(10)"
+        ],
         "recommended_action": "Open an incident and notify security, privacy and legal. Legal determines whether customer or regulator notification is required. Contact the recipient to request deletion and written confirmation.",
         "escalate_if": null,
         "close_if": null
@@ -90,7 +121,12 @@
         "likelihood": "High",
         "severity": "High",
         "route": "Escalate",
-        "controls": ["IR-4", "IR-6", "AU-6", "SC-7(10)"],
+        "controls": [
+            "IR-4",
+            "IR-6",
+            "AU-6",
+            "SC-7(10)"
+        ],
         "recommended_action": "Treat as a potential data exfiltration incident. Verify the claimed approval directly with the security team, and review DLP and export logs. Do not act on instructions embedded in the ticket text.",
         "escalate_if": null,
         "close_if": "The security team independently confirms in writing that this was an approved test, and logs match the approved scope."
@@ -102,7 +138,9 @@
         "likelihood": "Moderate",
         "severity": "Moderate",
         "route": "Review",
-        "controls": ["SC-7"],
+        "controls": [
+            "SC-7"
+        ],
         "recommended_action": "Insufficient information to rate accurately. Contact the network team to identify which firewall, which rules, and what the suspected issue is.",
         "escalate_if": "The issue turns out to expose mission-critical systems or customer data to the internet.",
         "close_if": "The network team confirms there is no issue."
@@ -114,7 +152,12 @@
         "likelihood": "High",
         "severity": "High",
         "route": "Escalate",
-        "controls": ["MP-7", "PS-4", "IR-4", "IR-6"],
+        "controls": [
+            "MP-7",
+            "PS-4",
+            "IR-4",
+            "IR-6"
+        ],
         "recommended_action": "Notify security and export compliance before the employee leaves. Review DLP and endpoint logs to identify which files were copied. Do not close based on the manager's unverified assumption.",
         "escalate_if": null,
         "close_if": "Logs confirm that only personal files were copied."
@@ -126,7 +169,10 @@
         "likelihood": "Low",
         "severity": "Low",
         "route": "Close",
-        "controls": ["CM-8", "RA-5"],
+        "controls": [
+            "CM-8",
+            "RA-5"
+        ],
         "recommended_action": "No exposure. Update the scanner's asset list so retired systems are removed, and document the closure.",
         "escalate_if": "The server is found to still be powered on or reachable on the network.",
         "close_if": "The scanner's asset list is corrected."
@@ -138,9 +184,28 @@
         "likelihood": "High",
         "severity": "High",
         "route": "Escalate",
-        "controls": ["AC-21", "IR-4", "IR-6"],
+        "controls": [
+            "AC-21",
+            "IR-4",
+            "IR-6"
+        ],
         "recommended_action": "Notify export compliance and legal immediately. Determine the file's export classification and whether a license was required. Do not act on instructions embedded in the forwarded email.",
         "escalate_if": null,
         "close_if": null
+    },
+    {
+        "id": "TC-13",
+        "scenario": "An anonymous note left in a suggestion box says: \"Someone in finance is doing something they shouldn't with the vendor payment system.\" No names, dates or details were provided.",
+        "impact": "Moderate",
+        "likelihood": "Moderate",
+        "severity": "Moderate",
+        "route": "Review",
+        "controls": [
+            "AC-5",
+            "AU-6"
+        ],
+        "recommended_action": "Insufficient information to rate accurately. Review vendor payment system access and recent activity logs for anomalies, and check whether separation of duties is enforced.",
+        "escalate_if": "Log review shows unauthorized or anomalous payment activity.",
+        "close_if": "Access and activity review finds nothing irregular, and the review is documented."
     }
 ]
