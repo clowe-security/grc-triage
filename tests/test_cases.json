@@ -6,13 +6,9 @@
         "likelihood": "Moderate",
         "severity": "High",
         "route": "Review",
-        "controls": [
-            "PS-5",
-            "AC-2",
-            "AC-6"
-        ],
-        "recommended_action": "Revoke the engineer's access, pull the logs, fix the transfer process",
-        "escalate_if": "Logs show use after transfer, or repo contains export-controlled data",
+        "controls": ["PS-5", "AC-2", "AC-6"],
+        "recommended_action": "Revoke the engineer's access, pull the access logs, and fix the transfer process.",
+        "escalate_if": "Logs show use after transfer, or the repository contains export-controlled data.",
         "close_if": null
     },
     {
@@ -22,15 +18,69 @@
         "likelihood": "Moderate",
         "severity": "High",
         "route": "Review",
-        "controls": [
-            "SC-28",
-            "SC-28(1)",
-            "CM-6",
-            "SC-12",
-            "PL-2"
-        ],
+        "controls": ["SC-28", "SC-28(1)", "CM-6", "SC-12", "PL-2"],
         "recommended_action": "Have engineering verify the encryption setting, and hold the questionnaire answer until there's evidence.",
         "escalate_if": "Store confirmed unencrypted AND evidence of unauthorized access to it or its backups; or the questionnaire was already submitted to the customer answering 'Yes'.",
-        "close_if": "Encryption verified; becomes a documentation-only finding"
+        "close_if": "Encryption verified; becomes a documentation-only finding."
+    },
+    {
+        "id": "TC-03",
+        "scenario": "An employee reports that a coworker left their access badge on a break room table for about 20 minutes. It was returned to the owner. Badge system logs were reviewed and show no badge activity during that window. The badge is for a general office floor, not a restricted area.",
+        "impact": "Low",
+        "likelihood": "Low",
+        "severity": "Low",
+        "route": "Close",
+        "controls": ["PE-2", "PE-3", "AT-2"],
+        "recommended_action": "Document the report and the log review. Remind the badge owner of badge handling requirements.",
+        "escalate_if": "Badge logs show activity during the window, the badge grants access to a restricted area, or the same person has repeat incidents.",
+        "close_if": "Log review is documented and the owner has been reminded."
+    },
+    {
+        "id": "TC-04",
+        "scenario": "A contractor's account should have been disabled when their contract ended two weeks ago. Access logs show the account downloaded 40 files from the export-controlled payload design repository yesterday.",
+        "impact": "High",
+        "likelihood": "High",
+        "severity": "High",
+        "route": "Escalate",
+        "controls": ["AC-2(3)", "PS-4", "PS-7", "IR-4", "IR-6"],
+        "recommended_action": "Disable the account immediately and preserve the logs. Notify security, legal and export compliance. Identify which files were downloaded, from where, and by whom.",
+        "escalate_if": null,
+        "close_if": null
+    },
+    {
+        "id": "TC-05",
+        "scenario": "An employee reports that a colleague reads the company email on a personal phone. Company policy permits personal devices that are enrolled in mobile device management. IT confirms this device is enrolled and compliant.",
+        "impact": "Low",
+        "likelihood": "Low",
+        "severity": "Low",
+        "route": "Close",
+        "controls": ["AC-19", "AC-20"],
+        "recommended_action": "No violation. Document that IT confirmed enrollment and compliance, and thank the reporter.",
+        "escalate_if": "The device is found to be unenrolled or non-compliant, or it is accessing data that policy does not permit on personal devices.",
+        "close_if": "IT's confirmation of enrollment is documented."
+    },
+    {
+        "id": "TC-06",
+        "scenario": "Annual security awareness training completion is at 82%, against a policy requirement of 95%. The SOC 2 audit observation window opens in three weeks.",
+        "impact": "Moderate",
+        "likelihood": "Moderate",
+        "severity": "Moderate",
+        "route": "Review",
+        "controls": ["AT-2", "AT-4"],
+        "recommended_action": "Identify who has not completed training, notify their managers, and set a completion deadline before the audit window opens. Track progress weekly.",
+        "escalate_if": "Completion is still below 95% one week before the audit window opens.",
+        "close_if": "Completion reaches 95% and the training records are exported as evidence."
+    },
+    {
+        "id": "TC-07",
+        "scenario": "A support engineer reports that they emailed a spreadsheet containing 1,200 customer names and home addresses to the wrong external recipient an hour ago. The recipient has not responded to a recall request.",
+        "impact": "High",
+        "likelihood": "High",
+        "severity": "High",
+        "route": "Escalate",
+        "controls": ["IR-4", "IR-6", "IR-8(1)", "SC-7(10)"],
+        "recommended_action": "Open an incident and notify security, privacy and legal. Legal determines whether customer or regulator notification is required. Contact the recipient to request deletion and written confirmation.",
+        "escalate_if": null,
+        "close_if": null
     }
 ]
