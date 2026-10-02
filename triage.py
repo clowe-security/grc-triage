@@ -3,6 +3,9 @@ import anthropic
 
 client = anthropic.Anthropic()
 
+passed = 0
+total = 0
+
 with open("tests/test_cases.json") as f:
     cases = json.load(f)
 
@@ -24,7 +27,10 @@ for case in cases:
     print(case["id"])
 
     for field in ["route", "impact", "likelihood", "severity"]:
+        total += 1
         if case[field] == result[field]:
+            passed += 1
             print("     PASS", field)
         else:
             print(f"        FAIL {field} expected: {case[field]} got: {result[field]}")
+print(f"Score: {passed}/{total}")
