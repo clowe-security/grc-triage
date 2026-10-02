@@ -21,5 +21,10 @@ for case in cases:
     cleaned = raw.strip().removeprefix("```json").removesuffix("```").strip()
     result = json.loads(cleaned)
 
-    print(f"{case['id']} expected: {case['route']} got: {result['route']}")
-    print(f"{case['id']} expected: {case['severity']} got: {result['severity']}")
+    print(case["id"])
+
+    for field in ["route", "impact", "likelihood", "severity"]:
+        if case[field] == result[field]:
+            print("     PASS", field)
+        else:
+            print(f"        FAIL {field} expected: {case[field]} got: {result[field]}")
