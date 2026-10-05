@@ -4,17 +4,12 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-passed = 0
-total = 0
-
-with open("tests/test_cases.json") as f:
-    cases = json.load(f)
-
 with open("prompts/system_prompt.md") as f:
     system_prompt = f.read()
 
-for case in cases:
-    prompt = f"Compliance concern: {case['scenario']}"
+
+def triage_concern(scenario):
+    prompt = f"Compliance concern: {scenario}"
     response = client.messages.create(
         model="claude-haiku-4-5-20251001",
         max_tokens=500,
@@ -27,19 +22,6 @@ for case in cases:
     final = apply_rules(result)
     result["route"] = final["route"]
     result["severity"] = final["severity"]
-
-    print(case["id"])
-
-    for field in ["route", "impact", "likelihood", "severity"]:
-        total += 1
-        if case[field] == result[field]:
-            passed += 1
-            print("     PASS", field)
-        else:
-            print(f"        FAIL {field} expected: {case[field]} got: {result[field]}")
-            print(result["reasoning"])
-
-    for override in final["overrides"]:
-        print("     OVERRIDE:", override)  
-             
-print(f"Score: {passed}/{total}")
+    result["overrides"] = final["overrides"]
+    result["raw"] = raw
+    return result
