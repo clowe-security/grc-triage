@@ -1,3 +1,4 @@
+from rules import apply_rules
 import json
 import anthropic
 
@@ -23,6 +24,9 @@ for case in cases:
     raw = response.content[0].text
     cleaned = raw.strip().removeprefix("```json").removesuffix("```").strip()
     result = json.loads(cleaned)
+    final = apply_rules(result)
+    result["route"] = final["route"]
+    result["severity"] = final["severity"]
 
     print(case["id"])
 
@@ -34,4 +38,8 @@ for case in cases:
         else:
             print(f"        FAIL {field} expected: {case[field]} got: {result[field]}")
             print(result["reasoning"])
+
+    for override in final["overrides"]:
+        print("     OVERRIDE:", override)  
+             
 print(f"Score: {passed}/{total}")
