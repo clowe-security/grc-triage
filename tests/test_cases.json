@@ -69,7 +69,7 @@
     },
     {
         "id": "TC-05",
-        "scenario": "An employee reports that a colleague reads the company email on a personal phone. Company policy permits personal devices that are enrolled in mobile device management. IT confirms this device is enrolled and compliant.",
+        "scenario": "An employee reports that a colleague reads company email on a personal phone. Company policy permits personal devices that are enrolled in mobile device management. IT confirms this device is enrolled and compliant.",
         "impact": "Low",
         "likelihood": "Low",
         "severity": "Low",

@@ -2,6 +2,8 @@ from rules import apply_rules
 import json
 import anthropic
 
+MODEL = "claude-haiku-4-5-20251001"
+
 client = anthropic.Anthropic()
 
 with open("prompts/system_prompt.md") as f:
@@ -11,8 +13,8 @@ with open("prompts/system_prompt.md") as f:
 def triage_concern(scenario):
     prompt = f"Compliance concern: {scenario}"
     response = client.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=500,
+        model=MODEL,
+        max_tokens=1000,
         messages=[{"role": "user", "content": prompt}],
         system=system_prompt,
     )
@@ -20,18 +22,21 @@ def triage_concern(scenario):
     cleaned = raw.strip().removeprefix("```json").removesuffix("```").strip()
     try:
         result = json.loads(cleaned)
-    except json.JSONDecodeError:
-        print("WARNING: model output was not valid JSON. Raw output:")
+        if result["route"] not in ["Escalate", "Review", "Close"]:
+            raise KeyError("route")
+        final = apply_rules(result)
+    except (json.JSONDecodeError, KeyError, TypeError):
+        print("WARNING: model output was missing or invalid. Raw output:")
         print(raw)
         result = {
             "route": "Review",
             "impact": "High",
             "likelihood": "Moderate",
             "controls": [],
-            "reasoning": "Model output could not be parsed. Manual triage required.",
+            "reasoning": "Model output could not be parsed or was invalid. Manual triage required.",
             "recommended_action": "Triage this concern manually.",
         }
-    final = apply_rules(result)
+        final = apply_rules(result)
     result["route"] = final["route"]
     result["severity"] = final["severity"]
     result["overrides"] = final["overrides"]

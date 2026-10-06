@@ -1,4 +1,4 @@
-from triage import triage_concern
+from triage import triage_concern, MODEL
 import json
 from datetime import datetime, timezone
 
@@ -38,7 +38,7 @@ record = {
     "prompt_version": "v3",
     "timestamp": datetime.now(timezone.utc).isoformat(),
     "scenario": scenario,
-    "model": "claude-haiku-4-5-20251001",
+    "model": MODEL,
     "model_raw_output": result["raw"],
     "recommended_route": result["route"],
     "guardrail_overrides": result["overrides"],
