@@ -18,7 +18,19 @@ def triage_concern(scenario):
     )
     raw = response.content[0].text
     cleaned = raw.strip().removeprefix("```json").removesuffix("```").strip()
-    result = json.loads(cleaned)
+    try:
+        result = json.loads(cleaned)
+    except json.JSONDecodeError:
+        print("WARNING: model output was not valid JSON. Raw output:")
+        print(raw)
+        result = {
+            "route": "Review",
+            "impact": "High",
+            "likelihood": "Moderate",
+            "controls": [],
+            "reasoning": "Model output could not be parsed. Manual triage required.",
+            "recommended_action": "Triage this concern manually.",
+        }
     final = apply_rules(result)
     result["route"] = final["route"]
     result["severity"] = final["severity"]

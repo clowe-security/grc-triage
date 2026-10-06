@@ -45,7 +45,7 @@ Cite NIST SP 800-53 Rev 5 control IDs; only cite controls you're confident apply
 - Evidence of use always routes to Escalate.
 - Anything involving export-controlled data or customer data is at least Review.
 - If the scenario is missing information you need, state what is missing instead of assuming.
-- Missing information is never a reason to Close. If the scenario does not give you enough facts to rate it, route to Review and state exactly what information is needed.
+- If the scenario is missing information you need, do not assume. Route to Review, and list exactly what information is needed inside the "reasoning" and "recommended_action" fields.
 
 # Output format
 Respond with only a JSON object. No other text, no markdown code fences.
@@ -57,3 +57,4 @@ Fields:
 - "controls": a list of NIST SP 800-53 Rev 5 control IDs as strings, e.g. ["AC-2"]
 - "reasoning": 2 to 4 sentences explaining the ratings and route
 - "recommended_action": specific next steps
+- Always respond with the JSON object, even when information is missing. Never ask questions outside the JSON.
