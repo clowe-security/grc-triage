@@ -1,10 +1,12 @@
 from rules import apply_rules
 import json
-import anthropic
+import boto3
 
-MODEL = "claude-haiku-4-5-20251001"
+MODEL = "us.anthropic.claude-haiku-4-5-20251001-v1:0"
 
-client = anthropic.Anthropic()
+bedrock_client = boto3.client(service_name='bedrock-runtime',
+                              region_name='us-west-2')
+
 
 with open("prompts/system_prompt.md") as f:
     system_prompt = f.read()
@@ -12,13 +14,13 @@ with open("prompts/system_prompt.md") as f:
 
 def triage_concern(scenario):
     prompt = f"Compliance concern: {scenario}"
-    response = client.messages.create(
-        model=MODEL,
-        max_tokens=1000,
-        messages=[{"role": "user", "content": prompt}],
-        system=system_prompt,
+    response = bedrock_client.converse(
+        modelId=MODEL,
+        messages=[{"role": "user", "content": [{"text": prompt}]}],
+        system=[{"text": system_prompt}],
+        inferenceConfig={"maxTokens" : 1000},
     )
-    raw = response.content[0].text
+    raw = response["output"]["message"]["content"][0]["text"]
     cleaned = raw.strip().removeprefix("```json").removesuffix("```").strip()
     try:
         result = json.loads(cleaned)
